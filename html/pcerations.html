@@ -1,0 +1,116 @@
+<html>
+<head>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+ <script src="JS/jquery-ui.js"></script>
+<script src="JS/jquery.min.js"></script>
+ <link rel="stylesheet" href="JS/jquery-ui.css" />
+<link rel="stylesheet" href="css/animate.css" />
+ <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+
+<script>
+	function selectstep(n){
+		$(".sh").hide();
+		//$("#shide2").show();
+		//$("#shide3").show();
+		//$(".box1").animate({marginLeft:'+=50px'},300);
+		$(".box1").addClass("bg");
+		//$(".box1").animate({marginLeft:'+=50px'},300);
+
+	}
+</script>
+<style>
+.sh{display:none;}
+.sh:first-child{
+	display:block;
+	background-color:blue;
+}
+.bg{
+	-webkit-transform: rotateY(-180deg) translateX(198px) translateZ(2px); /* Chrome, Safari, Opera */
+   }
+.box1{
+	width: 100px;
+	height: 40px;
+	background-color: #cc4d4d;position: absolute;
+	}
+
+.box2{
+	width: 100px;
+	height: 40px;
+	background-color: yellow;
+	}	
+
+.panel {
+float: left;
+width: 200px;
+height: 200px;
+margin: 20px;
+position: relative;
+font-size: .8em;
+-webkit-perspective: 600px;
+-moz-perspective: 600px;
+perspective: 600px;
+}
+swing.flip .front {
+background-color: #222;
+-webkit-transform: rotateY(180deg);
+-moz-transform: rotateY(180deg);
+}
+.click.flip .front {
+-webkit-transform: rotateX(180deg);
+-moz-transform: rotateX(180deg);
+transform: rotateX(180deg);
+}
+.panel.flip .front {
+z-index: 900;
+border-color: #eee;
+background: #333;
+box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+-webkit-transform: rotateY(180deg);
+-moz-transform: rotateY(180deg);
+transform: rotateY(180deg);
+}
+.swing .front {
+-webkit-transform: rotateY(0deg);
+-moz-transform: rotateY(0deg);
+transform: rotateY(0deg);
+}
+	</style>
+</head>
+<body>hiiiiiiiiiiiii
+<a href="#" onclick="selectstep(1)">1</a>
+<a href="#" onclick="selectstep(2)">2</a>
+<a href="#" onclick="selectstep(3)">3</a>
+<div class="box1"></div>
+<div class="box2"></div>
+
+<div class="srh">
+<div class="sh" id="shide1">
+3.Skeleton
+A Beautiful Boilerplate for Responsive, Mobile-Friendly Development. Skeleton is a small collection of CSS files that can help you rapidly develop sites that look beautiful at any size, be it a 17″ laptop screen or an iPhone.
+</div>
+
+<div class="sh" id="shide2">
+4.Skeleton
+A Beautiful Boilerplate for Responsive, Mobile-Friendly Development. Skeleton is a small collection of CSS files that can help you rapidly develop sites that look beautiful at any size, be it a 17″ laptop screen or an iPhone.
+</div>
+
+<div class="sh" id="shide3">
+5.Skeleton
+A Beautiful Boilerplate for Responsive, Mobile-Friendly Development. Skeleton is a small collection of CSS files that can help you rapidly develop sites that look beautiful at any size, be it a 17″ laptop screen or an iPhone.
+</div>
+</div>
+<div class="click swing panel flip">
+  <div class="front">
+    <h2>Swing like a gate</h2>
+  </div>
+  <div class="back">
+    <div class="pad">
+    <h2>Any axis is possible</h2>
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>

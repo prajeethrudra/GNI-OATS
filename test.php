@@ -1,0 +1,147 @@
+<?php 
+session_start();
+include 'config.php';
+if(isset($_SESSION['username'])){
+$name=$_SESSION['username'];
+if($name=="admin")	{
+
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+ <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+ <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+<script>
+function selectstep(n){
+	$(".cs").hide();
+	$("#content"+n).show();
+	}
+</script>
+<style>
+.cs{display:none;}
+.cs:first-child{display:block;}
+</style>
+<?php 
+$i=0;
+?>
+</head>
+
+<body>
+<?php 
+for($i=1;$i<5;$i++){ ?>
+<a href="#" class="" onclick="selectstep(<?php echo $i?>)"><?php echo $i; ?></a>
+
+<?php } ?>
+<div class="cs1">
+<div id="content1" class="cs">qwertyuiop
+<input type="radio" name="1"/>
+</div>
+
+<div id="content2" class="cs">asdfghjkl;
+<input type="radio" name="1"/>
+</div>
+
+<div id="content3" class="cs">xcvbnm,.
+<input type="radio" name="1"/></div>
+</div>
+</body>
+</html>
+
+
+
+
+<?php
+$connect= mysql_connect('localhost','root','');
+$mydb=mysql_select_db("oats");
+?>
+<html>
+<head></head>
+<body>
+<?php
+$query1=mysql_query("SELECT * FROM questionpaper");	
+$no=0;
+$x=1; 
+//echo $x;
+
+while ($fquery1=mysql_fetch_array($query1)) {
+$no++;
+$question=$fquery1['question'];
+$option1=$fquery1['1option'];
+$option2=$fquery1['2option'];
+$option3=$fquery1['3option'];
+$option4=$fquery1['4option'];
+$canswer=$fquery1['answer'];
+echo $canswer;
+?>
+
+<textarea disabled="disabled"><?php echo $question; ?></textarea><br/>
+<form method="POST" action="paper.php">
+<input type="radio" name="answer<?php echo $no;?>" value="1opt"><input type="text" name="1option"  value="<?php echo $option1;?>" disabled="disabled"><br/><br/>
+<input type="radio" name="answer<?php echo $no;?>" value="2opt"><input type="text" name="2option" value="<?php echo $option2; ?>" ><br/><br/>
+<input type="radio" name="answer<?php echo $no;?>" value="3opt"><input type="text" name="3option" value="<?php echo $option3; ?>" ><br/><br/>
+<input type="radio" name="answer<?php echo $no;?>" value="4opt"><input type="text" name="4option" value="<?php echo $option4; ?>" ><br/><br/>
+
+<?php
+
+ }  ?>
+
+<input type="submit" name="addto" value="sub">
+<input type="submit" name="nexxt" value="next"></form>
+<?php
+$count=0; 
+$nq=1;
+if(isset($_POST['addto']))
+{
+	$query1=mysql_query("SELECT * FROM questionpaper");	
+	$qwerty=$_POST['answer1'];
+	echo $qwerty;
+$x++;
+//echo $x;
+	while ($fquery1=mysql_fetch_array($query1)) {
+	$canswer=$fquery1['answer'];
+	echo $canswer."<br/>";
+//	echo "hi
+	$radioanswer="answer".$nq;
+	//echo $radioanswer;
+	//$answer=$_POST[$radioanswer];
+	//echo $answer."<br/>";
+	$radioconcat=$answer."ion";
+//	echo $radioconcat."<br/>";
+
+	//echo $canswer;
+
+	if($radioconcat==$canswer)
+	{
+
+$count+=1;
+	}
+	
+	$nq++;
+}
+//echo "ur correct answers are"."<br/>";
+//echo $count."<br/>";
+}
+
+if(isset($_POST['nexxt']))
+{
+	header("Location:main.php");
+}
+
+ ?>
+
+
+</body>
+</html>
+
+<?php } 
+else{
+	header("Location:index.php");
+}
+}
+
+else{
+	header("Location:index.php");
+}?>
